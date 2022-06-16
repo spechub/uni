@@ -1,0 +1,7 @@
+
+SUBDIRS = simple canvas tix toolkit gengui intro
+
+include @TOP@/mk/boilerplate.mk
+
+
+

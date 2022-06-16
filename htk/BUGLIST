@@ -1,0 +1,54 @@
+HTk Buglist
+-----------
+
+This file contains a list of known and as-yet unfixed HTk bugs, in
+(roughly) descending order of seriousness.
+
+TkVariables [cxl, 17.09.01]
+ MenuCheckButtons can have TkVariables of any type. Using e.g. list of
+ string leads to 
+    Fail: invalid command name "abc"
+ presumably as wish tries to a evaluate "[abc]". 
+  
+Font parsing [ludi, 17.08.01] 
+ In resources/Font.hs, in the class instantiation of XFont for Read,
+ we may have XFonts which are not parsed correctly (if we do not set
+ all fields of the XFont). This is in particular happens in text
+ widgets where the font is not specified explicitly-- 
+ see examples/MainmarkupTextEx.hs
+
+doFormMust can be closed [amahnke, 28.07.06]
+ In toolkit/SimpleForm.hs, the doFormMust function can't deal with
+ a close event. When the user doesn't use the OK button but closes the
+ window, there is no value to return, so the ghc runtime engine is
+ throwing:
+ (Pattern match failure in do expression at SimpleForm.hs:376:6-17)
+ This kind of form is used in uni/mmiss/test/MainMMiSSWorkbench
+
+---------------------------------------------------------------------------
+
+Fixed bugs:
+
+BNo should by a type synonym, not a newtype [cxl]
+ kernel/Wish.hs.
+Fixed - cxl, 02.02
+
+Text Editors become enabled [mclee, 14.09.01]
+  Inserting markup text into a text editor leaves it enabled. The
+  insert markup function should leave the text editor in its
+  previous state.
+Fixed - ludi/cxl, 20.09.01
+
+creadTK can't parse Bool? [cxl/crimson, 21.09.01]
+  resources/GUIValue.hs falls over when parsing a Bool. Or it tries to
+  parse Bools as something else: 
+     do v<- (createTkVariable True):: IO (TkVariable Bool)
+        readTkVariable v
+   leads to "NO PARSE: True".
+Fixed - ludi/cxl, 28.09.01
+
+
+FileDialog hangs [crimson, 17.08.01]
+ If the "create folder" button is clicked, the file dialog does not 
+ respond to further interaction; you can only quit. 
+Fixed - ludi

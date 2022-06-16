@@ -1,0 +1,11 @@
+PACKAGES = uni-htk
+
+SRCS       = MaingenGUI.hs\
+	     MaingenericBrowser.hs \
+	     Mainnotepad.hs
+
+
+include @TOP@/mk/boilerplate.mk
+
+
+

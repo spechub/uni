@@ -1,0 +1,8 @@
+PACKAGE = uni-davinci
+PACKAGES = uni-graphs
+
+SRCS       = DaVinciTypes.hs DaVinciBasic.hs DaVinciGraph.hs
+SUBDIRS    = test
+
+include @TOP@/mk/boilerplate.mk
+

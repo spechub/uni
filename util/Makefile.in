@@ -1,0 +1,44 @@
+PACKAGE = uni-util
+
+# We are using ghc6.t or later
+PACKAGES = uni-options template-haskell mtl network regex-compat haskell98
+
+SRCS       = \
+  DeprecatedFiniteMap.hs DeprecatedSet.hs Huffman.hs \
+  TemplateHaskellHelps.hs CompileFlags.hs \
+  Queue.hs ExtendedPrelude.hs Computation.hs Dynamics.hs \
+  WBFiles.hs Object.hs Debug.hs Maybes.hs LineShow.hs Cache.hs FileNames.hs \
+  IOExtras.hs QuickReadShow.hs AtomString.hs SmallSet.hs Registry.hs \
+  RegularExpression.hs DelSet.hs Thread.hs UniqueString.hs UniqueFile.hs \
+  TempFile.hs Sink.hs VariableSet.hs VariableMap.hs \
+  CommandStringSub.hs WaitOnN.hs FileSystem.hs CacheTable.hs \
+  DeepSeq.hs NameMangle.hs KeyedChanges.hs \
+  Sources.hs Broadcaster.hs ReferenceCount.hs Delayer.hs VariableList.hs \
+  Myers.hs VariableSetBlocker.hs IntPlus.hs UnionFind.hs \
+  ICStringLen.hs VisitedSet.hs StrError.hs HostName.hs \
+  Bytes.hs Binary.hs BinaryUtils.hs BinaryInstances.hs BinaryExtras.hs \
+  BinaryAll.hs StringSkip.hs ThreadDict.hs TSem.hs Store.hs Messages.hs \
+  ClockTimeToString.hs UTF8.hs VSem.hs \
+
+SRCSC      = new_object.c default_options.c
+
+SUBDIRS = test
+
+DOCPP=YES
+
+include @TOP@/mk/boilerplate.mk
+
+# We include special handling for defaultoptions when exporting.
+prepareexportshere : changedefaultoptions
+
+displaysrcshere : displayextrasrcs
+
+displayextrasrcs :
+	@echo @TOP@/util/default_options.default.c
+
+.PHONY : changedefaultoptions displayextrasrcs
+
+changedefaultoptions : 
+	$(CCH) $(CFLAGS) -c default_options.default.c -o default_options.o
+	$(AR) -r $(LIB) default_options.o  
+	$(MAKE) packageherequick

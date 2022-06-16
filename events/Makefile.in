@@ -1,0 +1,26 @@
+PACKAGE = uni-events
+PACKAGES = uni-util
+
+SRCS       = Toggle.hs\
+             Events.hs\
+             After.hs\
+             Cells.hs\
+             GuardedEvents.hs\
+             GuardedChannels.hs\
+             DeleteQueue.hs\
+             NullGuard.hs\
+             FMQueue.hs\
+             EqGuard.hs\
+             Spawn.hs\
+             WrapIO.hs\
+             Destructible.hs\
+             Channels.hs\
+             Examples.hs\
+             RefQueue.hs\
+             MatchChannel.hs\
+             RegexChannel.hs\
+             Synchronized.hs\
+
+SUBDIRS = test
+
+include @TOP@/mk/boilerplate.mk

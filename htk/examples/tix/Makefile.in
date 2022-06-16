@@ -1,0 +1,9 @@
+PACKAGES = uni-htk
+
+SRCS       = Maintixwidgets.hs\
+             Mainpanedwindow.hs
+
+include @TOP@/mk/boilerplate.mk
+
+
+

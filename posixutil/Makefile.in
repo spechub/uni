@@ -1,0 +1,34 @@
+# This package *used* to be where we put Posix-dependent modules.  The
+# Posix-dependency has now been removed.
+#
+PACKAGE = uni-posixutil
+PACKAGES = uni-events haskell98
+
+SRCS = CopyFile.hs ProcessClasses.hs ChildProcess.hs \
+   Expect.hs SafeSystem.hs BlockSigPIPE.hs
+
+
+SRCSC = MainrunCommand.c Mainlog.c
+
+SUBDIRS = test
+
+DOCPP=YES
+
+EXTRAEXPORTS = runCommand$(EXESUFFIX) log$(EXESUFFIX) daVinci.debug.in wish.debug.in
+
+# For runCommand we link with -no-hs-main since it's not actually a Haskell
+# program.
+runCommand_HC_OPTIONS = -no-hs-main
+log_HC_OPTIONS = -no-hs-main
+
+include @TOP@/mk/boilerplate.mk
+
+prepareexports : runCommand log
+
+.PHONY : displayextrasrcs
+
+displaysrcshere : displayextrasrcs
+
+displayextrasrcs :
+	@echo @TOP@/posixutil/daVinci.debug.in 	@TOP@/posixutil/wish.debug.in
+

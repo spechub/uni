@@ -1,0 +1,11 @@
+PACKAGES = uni-htk
+
+SRCS       = MainnotepadStateEx.hs\
+	     MainiconBarEx.hs\
+             MainwithdrawConfigTest.hs\
+             MaintreeListStateEx.hs\
+	     MainreliefEx.hs\
+	     MainselectBoxEx.hs\
+	     MainweemenuEx.hs
+
+include @TOP@/mk/boilerplate.mk

@@ -1,0 +1,3 @@
+This package contains various miscellaneous utilities which belong nowhere
+in particular in the Workbench.  Highlights include "Computation", 
+"ExtendedPrelude", "Sources" and "BinaryAll".

@@ -1,0 +1,7 @@
+SRCS = TestObject.hs TestDynamics.hs TestDynamics2.hs TestOptions.hs \
+   TestFact.hs TestFallOut.hs TestBinary.hs HuffmanCode.hs VariableListTest.hs
+
+PACKAGES = uni-util
+PACKAGE = uni-util-test
+
+include @TOP@/mk/boilerplate.mk

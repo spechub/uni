@@ -1,0 +1,8 @@
+PACKAGES = uni-davinci uni-graphs-test
+
+SRCS = TestDaVinci.hs MainDepend.hs TestGraphEditor.hs TestGraphEditor2.hs \
+   TestDaVinciDouble.hs TestGraphEditorRemote.hs MainGraphEditorServer.hs
+
+include @TOP@/mk/boilerplate.mk
+
+

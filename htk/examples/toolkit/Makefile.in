@@ -1,0 +1,17 @@
+PACKAGES = uni-htk
+
+SRCS       = Mainfiledialog.hs\
+             Mainlogwin.hs\
+             Mainmarkup.hs\
+	     Maindialog.hs\
+             Mainsimpleform.hs\
+             Mainsimpleform2.hs\
+             Mainsimplemenu.hs\
+             Mainspinbutton.hs\
+             Maintreelist.hs\
+             MainsimpleListBox.hs\
+
+include @TOP@/mk/boilerplate.mk
+
+
+

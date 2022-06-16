@@ -1,0 +1,21 @@
+PACKAGE = uni-graphs
+
+PACKAGES = uni-server uni-htk
+
+SRCS       = GraphDisp.hs GraphConfigure.hs NewNames.hs Graph.hs \
+     SimpleGraph.hs GetAttributes.hs DisplayGraph.hs GraphEditor.hs \
+     GraphEditorService.hs GraphEditorRemote.hs \
+     GraphConnection.hs RemoveAncestors.hs GraphOps.hs TopSort.hs \
+     FindCommonParents.hs FindCycle.hs GetAncestors.hs EmptyGraphSort.hs \
+     PureGraph.hs PureGraphPrune.hs PureGraphToGraph.hs VersionDag.hs \
+     PureGraphMakeConsistent.hs 
+
+SUBDIRS    = test
+
+XHCDIRS = $(HTKDIRS)
+
+# Sadly unavoidable because of tricks in DisplayGraph.hs
+DOCPP = YES
+
+include @TOP@/mk/boilerplate.mk
+

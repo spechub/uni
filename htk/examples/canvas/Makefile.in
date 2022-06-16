@@ -1,0 +1,11 @@
+PACKAGES = uni-htk
+
+SRCS       = MaincanvasEx.hs\
+             MainxmasCanvas.hs\
+             Mainblobs.hs\
+             MaingoBoard.hs\
+
+include @TOP@/mk/boilerplate.mk
+
+
+
