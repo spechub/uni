@@ -168,7 +168,7 @@ findNotHanging isHidden (PureGraph fm :: PureGraph nodeInfo (Maybe arcInfo)) =
 nChildren :: Ord nodeInfo => PureGraph nodeInfo arcInfo -> nodeInfo -> Int
 nChildren (PureGraph fm :: PureGraph nodeInfo arcInfo) nf =
    let
-      fm1 = Map.foldWithKey
+      fm1 = Map.foldrWithKey
          (\ a nodeData fm0 ->
             let
                parents1 = parentNodes nodeData

@@ -69,6 +69,7 @@ import System.IO(Handle)
 
 -- GHC imports
 import Control.Applicative
+import Control.Monad.Fail
 import Control.Monad.Trans
 
 -- our imports
@@ -166,6 +167,7 @@ instance Monad m => Monad (ArgMonad arg m) where
 
    return v = ArgMonad (const (return v))
 
+instance MonadFail m => MonadFail (ArgMonad arg m) where
    fail s = ArgMonad (const (fail s))
 
 instance MonadIO m => MonadIO (ArgMonad arg m) where

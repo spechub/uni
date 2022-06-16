@@ -67,6 +67,7 @@ import Control.Exception
 import Control.Concurrent
 import Control.Applicative
 import Control.Monad
+import Control.Monad.Fail
 
 import Util.Computation
 
@@ -366,6 +367,7 @@ instance Monad Event where
    (>>) = thenEvent
    return = doneEvent
 
+instance MonadFail Event where
    fail str = always (ioError (userError str))
 
 instance Applicative Event where
@@ -439,4 +441,3 @@ getAllQueued event = gAQ event []
             case maybeA of
                Nothing -> return (reverse acc)
                Just a -> gAQ event (a:acc)
-

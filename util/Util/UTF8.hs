@@ -23,6 +23,7 @@ import Data.List
 import Data.Bits
 import Data.Word
 import Control.Monad.Except () -- needed for instance Monad (Either String)
+import Control.Monad.Fail
 
 import Util.Computation
 
@@ -76,7 +77,7 @@ toUTF8 (x:xs) =
 -- (fromUTF8WE :: String -> Either String String)
 -- to get a conversion function which either succeeds (Right) or
 -- returns an error message (Left).
-fromUTF8WE :: (Enum byte,Monad m) => [byte] -> m String
+fromUTF8WE :: (Enum byte,MonadFail m) => [byte] -> m String
 fromUTF8WE [] = return []
 fromUTF8WE (x0 : xs0) =
    let
@@ -142,8 +143,6 @@ fromUTF8WE (x0 : xs0) =
 
 {-# SPECIALIZE fromUTF8WE :: String -> WithError String #-}
 {-# SPECIALIZE fromUTF8WE :: [Word8] -> WithError String #-}
-{-# SPECIALIZE fromUTF8WE :: String -> Either String String #-}
-{-# SPECIALIZE fromUTF8WE :: [Word8] -> Either String String #-}
 
 
 -- --------------------------------------------------------------------------

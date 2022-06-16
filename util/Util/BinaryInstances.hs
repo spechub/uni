@@ -35,6 +35,7 @@ module Util.BinaryInstances(
 import Data.Char
 
 -- GHC modules
+import Control.Monad.Fail
 import Data.Bits
 import Data.Word
 import GHC.Int(Int32)
@@ -159,7 +160,7 @@ instance Monad m => HasBinary Bool m where
          case switch of
             0 -> return False
             1 -> return True
-            _ -> fail ("BinaryInstances.Bool - unexpected switch "
+            _ -> error ("BinaryInstances.Bool - unexpected switch "
                ++ show switch)
 
 
@@ -438,7 +439,7 @@ instance (Monad m,
                 do
                    v <- readBin rb
                    return (Choice5 v)
-            _ -> fail ("BinaryInstances.Choice5 - unexpected switch "
+            _ -> error ("BinaryInstances.Choice5 - unexpected switch "
                ++ show switch)
 
 -- ----------------------------------------------------------------------
@@ -538,7 +539,7 @@ instance (Monad m,HasWrapper wrapper m) => HasBinary (Wrapped wrapper) m where
                )
             (wraps :: [Wrap wrapper m]) of
 
-            Nothing -> fail ("BinaryInstances.Wrapper - bad switch "
+            Nothing -> error ("BinaryInstances.Wrapper - bad switch "
                ++ show thisLabel)
             Just (getWrap :: m (Wrapped wrapper)) -> getWrap
 

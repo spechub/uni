@@ -107,6 +107,7 @@ where
 
 import Control.Applicative
 import Control.Monad
+import Control.Monad.Fail
 
 import Control.Exception
 
@@ -310,6 +311,8 @@ instance Monad WithError where
    return v = hasValue v
    (>>=) aWE toBWe =
       mapWithError' toBWe aWE
+
+instance MonadFail WithError where
    fail s = hasError s
 
 newtype MonadWithError m a = MonadWithError (m (WithError a))
@@ -335,6 +338,7 @@ instance Monad m => Monad (MonadWithError m) where
                      act2
                Error s -> return (Error s)
          )
+instance MonadFail m => MonadFail (MonadWithError m) where
    fail s = MonadWithError (return (Error s))
 
 monadifyWithError :: Monad m => WithError a -> MonadWithError m a
