@@ -168,7 +168,7 @@ instance Monad m => Monad (ArgMonad arg m) where
    return v = ArgMonad (const (return v))
 
 instance MonadFail m => MonadFail (ArgMonad arg m) where
-   fail s = ArgMonad (const (fail s))
+   fail s = ArgMonad (const (Control.Monad.Fail.fail s))
 
 instance MonadIO m => MonadIO (ArgMonad arg m) where
    liftIO act = ArgMonad (\ arg -> liftIO act)

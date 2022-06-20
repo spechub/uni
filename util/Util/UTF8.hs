@@ -89,11 +89,11 @@ fromUTF8WE (x0 : xs0) =
                xs1 <- fromUTF8WE xs0
                return (chr ox : xs1)
          6 ->
-            fail "UTF8 escape sequence starts 10xxxxxx"
+            Control.Monad.Fail.fail "UTF8 escape sequence starts 10xxxxxx"
          0 ->
-            fail "UTF8 escape sequence starts 11111110"
+            Control.Monad.Fail.fail "UTF8 escape sequence starts 11111110"
          -1 ->
-            fail "UTF8 escape sequence starts 11111111"
+            Control.Monad.Fail.fail "UTF8 escape sequence starts 11111111"
          n ->
             let
                r = 6 - n -- number of 6-bit pieces
@@ -109,14 +109,14 @@ fromUTF8WE (x0 : xs0) =
                      )
 
                mkx [] _ _ =
-                  fail "UTF8 string ends in middle of escape sequence"
+                  Control.Monad.Fail.fail "UTF8 string ends in middle of escape sequence"
                mkx (ch : xs1) x0 count0 =
                   do
                      let
                         och = fromEnum ch
                      if och .&. 0x80 /= 0x80
                         then
-                           fail ("UTF8 escape sequence contains continuing "
+                           Control.Monad.Fail.fail ("UTF8 escape sequence contains continuing "
                               ++ "character not of form 10xxxxxx")
                         else
                            return ()
@@ -134,7 +134,7 @@ fromUTF8WE (x0 : xs0) =
                   (x,xs1) <- mkx xs0 xtop r
                   if x < minx
                      then
-                        fail ("UTF8 escape sequence contains character not "
+                        Control.Monad.Fail.fail ("UTF8 escape sequence contains character not "
                            ++ "optimally encoded")
                      else
                         do
