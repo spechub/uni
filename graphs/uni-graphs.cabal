@@ -1,5 +1,5 @@
 name:           uni-graphs
-version:        2.2.1.1
+version:        2.2.1.2
 build-type:     Simple
 license:        LGPL
 license-file:   LICENSE
@@ -9,8 +9,8 @@ homepage:       http://www.informatik.uni-bremen.de/uniform/wb/
 category:       GUI
 synopsis:       Graphs
 description:    Graphs toolkit
-cabal-version:  >= 1.4
-Tested-With:    GHC==7.10.3, GHC==8.4.3
+cabal-version:  >= 1.10
+Tested-With:    GHC==8.8.4
 
 flag debug
   description: add debug traces
@@ -32,3 +32,5 @@ library
     cpp-options: -DDEBUG
 
   ghc-options: -fwarn-unused-imports -fno-warn-warnings-deprecations
+
+  default-language: Haskell2010
